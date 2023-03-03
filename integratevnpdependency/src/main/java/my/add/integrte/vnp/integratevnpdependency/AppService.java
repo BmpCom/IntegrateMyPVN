@@ -22,6 +22,18 @@ public class AppService extends Service {
         }
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        try {
+            if (!new AppPreference(this).isFound()) {
+                VpnActivity.stopvpn();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {

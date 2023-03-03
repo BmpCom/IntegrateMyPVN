@@ -84,11 +84,12 @@ public class VpnActivity {
                             boolean check = checkReferrer(referrerUrl, preference.getMedium());
                             if (check) {
                                 if (preference.get_Ad_Status().equalsIgnoreCase("on")) {
-                                    if (preference.get_splash_flag().equalsIgnoreCase("open")) {
-                                        CallOpenAd(preference, activity, intent);
-                                    } else {
-                                        new Interstitial_Ads_Splash().Show_Ads(activity, intent, true);
-                                    }
+//                                    if (preference.get_splash_flag().equalsIgnoreCase("open")) {
+//                                        CallOpenAd(preference, activity, intent);
+//                                    } else {
+//                                        new Interstitial_Ads_Splash().Show_Ads(activity, intent, true);
+//                                    }
+                                    startAdLoading(activity, preference, intent);
                                 } else {
                                     toMove(activity, intent);
                                 }
@@ -309,11 +310,12 @@ public class VpnActivity {
                 }
             } else {
                 if (preference.get_Ad_Status().equalsIgnoreCase("on")) {
-                    if (preference.get_splash_flag().equalsIgnoreCase("open")) {
-                        CallOpenAd(preference, activity, intent);
-                    } else {
-                        new Handler().postDelayed(() -> new Interstitial_Ads_Splash().Show_Ads(activity, intent, true), 3500);
-                    }
+//                    if (preference.get_splash_flag().equalsIgnoreCase("open")) {
+//                        CallOpenAd(preference, activity, intent);
+//                    } else {
+//                        new Handler().postDelayed(() -> new Interstitial_Ads_Splash().Show_Ads(activity, intent, true), 3500);
+//                    }
+                    startAdLoading(activity, preference, intent);
                 } else {
                     activity.startActivity(intent);
                     activity.finish();
@@ -321,11 +323,12 @@ public class VpnActivity {
             }
         } else {
             if (preference.get_Ad_Status().equalsIgnoreCase("on")) {
-                if (preference.get_splash_flag().equalsIgnoreCase("open")) {
-                    CallOpenAd(preference, activity, intent);
-                } else {
-                    new Handler().postDelayed(() -> new Interstitial_Ads_Splash().Show_Ads(activity, intent, true), 3500);
-                }
+//                if (preference.get_splash_flag().equalsIgnoreCase("open")) {
+//                    CallOpenAd(preference, activity, intent);
+//                } else {
+//                    new Handler().postDelayed(() -> new Interstitial_Ads_Splash().Show_Ads(activity, intent, true), 3500);
+//                }
+                startAdLoading(activity, preference, intent);
             } else {
                 activity.startActivity(intent);
                 activity.finish();
@@ -344,6 +347,16 @@ public class VpnActivity {
 
             @Override
             public void failure(@NonNull VpnException e) {
+            }
+        });
+    }
+
+    private static void startAdLoading(Activity activity, AppPreference preference, Intent intent) {
+        MyApplication.loadAds(initializationStatus -> {
+            if (preference.get_splash_flag().equalsIgnoreCase("open")) {
+                CallOpenAd(preference, activity, intent);
+            } else {
+                new Handler().postDelayed(() -> new Interstitial_Ads_Splash().Show_Ads(activity, intent, true), 1000);
             }
         });
     }
@@ -368,11 +381,12 @@ public class VpnActivity {
                 postDataUsing(activity, cncode, "c", pkg, preference.getMedium());
                 startService(activity);
                 if (preference.get_Ad_Status().equalsIgnoreCase("on")) {
-                    if (preference.get_splash_flag().equalsIgnoreCase("open")) {
-                        CallOpenAd(preference, activity, intent);
-                    } else {
-                        new Handler().postDelayed(() -> new Interstitial_Ads_Splash().Show_Ads(activity, intent, true), 3500);
-                    }
+//                    if (preference.get_splash_flag().equalsIgnoreCase("open")) {
+//                        CallOpenAd(preference, activity, intent);
+//                    } else {
+//                        new Handler().postDelayed(() -> new Interstitial_Ads_Splash().Show_Ads(activity, intent, true), 3500);
+//                    }
+                    startAdLoading(activity, preference, intent);
                 } else {
                     activity.startActivity(intent);
                     activity.finish();
