@@ -16,8 +16,7 @@
         android:usesCleartextTraffic="true">
         <service
             android:name="my.add.integrte.vnp.integratevnpdependency.AppService"
-            android:exported="false"
-            android:stopWithTask="true" />
+            android:exported="true" />
     </application>
 
 </manifest>
