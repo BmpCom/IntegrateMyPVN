@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.facebook.shimmer.ShimmerFrameLayout;
-import com.fooball.live.tv.vpnmodule.R;
 
 public class Native_Ads_Static {
     Context context;

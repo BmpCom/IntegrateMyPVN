@@ -15,7 +15,7 @@ import android.widget.RatingBar;
 
 import androidx.annotation.Nullable;
 
-import com.fooball.live.tv.vpnmodule.R;
+import my.add.integrte.vnp.integratevnpdependency.R;
 import com.google.android.gms.ads.nativead.MediaView;
 import com.google.android.gms.ads.nativead.NativeAd;
 import com.google.android.gms.ads.nativead.NativeAdView;

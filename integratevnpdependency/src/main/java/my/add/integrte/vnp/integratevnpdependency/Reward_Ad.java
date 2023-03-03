@@ -10,7 +10,6 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 
-import com.fooball.live.tv.vpnmodule.R;
 import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.FullScreenContentCallback;

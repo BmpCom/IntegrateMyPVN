@@ -25,7 +25,7 @@ import com.facebook.ads.NativeAdListener;
 import com.facebook.ads.NativeAdView;
 import com.facebook.ads.NativeBannerAd;
 import com.facebook.ads.NativeBannerAdView;
-import com.fooball.live.tv.vpnmodule.R;
+import my.add.integrte.vnp.integratevnpdependency.R;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdLoader;
 import com.google.android.gms.ads.AdRequest;

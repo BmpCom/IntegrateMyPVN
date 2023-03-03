@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace 'com.fooball.live.tv.myapplication'
+    namespace 'my.add.integrte.vnp.integrateapplication'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.fooball.live.tv.myapplication"
+        applicationId "my.add.integrte.vnp.integrateapplication"
         minSdk 21
         targetSdk 33
         versionCode 1

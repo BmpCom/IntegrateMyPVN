@@ -6,9 +6,6 @@ import android.os.Bundle;
 import android.view.WindowManager;
 import android.widget.TextView;
 
-import com.fooball.live.tv.vpnmodule.R;
-
-
 public class CustomProgressDialog extends ProgressDialog {
 
     private final String title;

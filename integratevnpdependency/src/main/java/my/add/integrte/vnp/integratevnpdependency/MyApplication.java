@@ -7,7 +7,6 @@ import android.os.Build;
 import android.util.Log;
 
 import com.facebook.ads.AudienceNetworkAds;
-import com.fooball.live.tv.vpnmodule.R;
 import com.google.android.gms.ads.MobileAds;
 
 import java.util.ArrayList;

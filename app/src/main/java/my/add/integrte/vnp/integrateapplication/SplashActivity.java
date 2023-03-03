@@ -1,10 +1,8 @@
 package my.add.integrte.vnp.integrateapplication;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
-import com.fooball.live.tv.myapplication.R;
+import androidx.appcompat.app.AppCompatActivity;
 
 
 public class SplashActivity extends AppCompatActivity {

@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.fooball.live.tv.vpnmodule.R;
 import com.smarteist.autoimageslider.SliderViewAdapter;
 
 import java.util.List;

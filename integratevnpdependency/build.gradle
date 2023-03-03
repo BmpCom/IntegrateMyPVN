@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace 'com.fooball.live.tv.vpnmodule'
+    namespace 'my.add.integrte.vnp.integratevnpdependency'
     compileSdk 33
 
     defaultConfig {
