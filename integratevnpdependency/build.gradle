@@ -11,6 +11,7 @@ android {
         targetSdk 33
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -32,9 +33,9 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
     //vnppgradle
-    implementation 'com.github.AnchorFreePartner.hydra-sdk-android:sdk-core:4.0.0'
-    implementation 'com.github.AnchorFreePartner.hydra-sdk-android:hydra:4.0.0'
-    implementation 'com.github.AnchorFreePartner.hydra-sdk-android:openvpn:4.0.0'
+    implementation 'com.github.AnchorFreePartner.hydra-sdk-android:sdk-core:4.2.0'
+    implementation 'com.github.AnchorFreePartner.hydra-sdk-android:hydra:4.2.0'
+    implementation 'com.github.AnchorFreePartner.hydra-sdk-android:openvpn:4.2.0'
 
     implementation 'com.facebook.android:audience-network-sdk:6.12.0'
 
@@ -43,6 +44,7 @@ dependencies {
     implementation 'com.airbnb.android:lottie:5.2.0'
 
     implementation 'com.github.smarteist:autoimageslider:1.4.0'
+    implementation 'androidx.multidex:multidex:2.0.1'
 
     implementation 'com.github.bumptech.glide:glide:4.14.2'
     implementation 'androidx.multidex:multidex:2.0.1'
