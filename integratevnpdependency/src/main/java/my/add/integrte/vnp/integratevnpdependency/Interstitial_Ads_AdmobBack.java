@@ -44,6 +44,9 @@ public class Interstitial_Ads_AdmobBack {
         AppPreference preference = new AppPreference(source_class);
         if (preference.get_Ad_Status().equalsIgnoreCase("on")) {
             Constant.Back_Counter++;
+            final CustomProgressDialog customProgressDialog = new CustomProgressDialog(source_class, "Showing Ad...");
+            customProgressDialog.setCancelable(false);
+            customProgressDialog.show();
             AdRequest adRequest = new AdRequest.Builder().build();
             InterstitialAd.load(source_class, new AppPreference(source_class).get_Admob_Interstitial_Id1(), adRequest, new InterstitialAdLoadCallback() {
                 @Override
@@ -56,7 +59,9 @@ public class Interstitial_Ads_AdmobBack {
                             super.onAdFailedToShowFullScreenContent(adError);
                             mInterstitialAd_admob = null;
                             AppPreference.isFullScreenShow = false;
-
+                            if (customProgressDialog.isShowing()) {
+                                customProgressDialog.dismiss();
+                            }
                             if (adCloseListener != null) {
                                 adCloseListener.onAdClosed();
                             }
@@ -75,7 +80,9 @@ public class Interstitial_Ads_AdmobBack {
                         @Override
                         public void onAdDismissedFullScreenContent() {
                             super.onAdDismissedFullScreenContent();
-
+                            if (customProgressDialog.isShowing()) {
+                                customProgressDialog.dismiss();
+                            }
                             if (adCloseListener != null) {
                                 adCloseListener.onAdClosed();
                             }
@@ -96,7 +103,9 @@ public class Interstitial_Ads_AdmobBack {
                 public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                     mInterstitialAd_admob = null;
                     AppPreference.isFullScreenShow = false;
-
+                    if (customProgressDialog.isShowing()) {
+                        customProgressDialog.dismiss();
+                    }
                 }
             });
         } else {
@@ -110,6 +119,9 @@ public class Interstitial_Ads_AdmobBack {
         AppPreference preference = new AppPreference(source_class);
         if (preference.get_Ad_Status().equalsIgnoreCase("on")) {
             Constant.Back_Counter++;
+            final CustomProgressDialog customProgressDialog = new CustomProgressDialog(source_class, "Showing Ad...");
+            customProgressDialog.setCancelable(false);
+            customProgressDialog.show();
             AdManagerAdRequest adRequest = new AdManagerAdRequest.Builder().build();
             AdManagerInterstitialAd.load(source_class, new AppPreference(source_class).get_Admob_Interstitial_Id1(), adRequest, new AdManagerInterstitialAdLoadCallback() {
                 @Override
@@ -121,7 +133,9 @@ public class Interstitial_Ads_AdmobBack {
                         public void onAdFailedToShowFullScreenContent(@NonNull com.google.android.gms.ads.AdError adError) {
                             super.onAdFailedToShowFullScreenContent(adError);
                             adManagerInterstitialAd = null;
-
+                            if (customProgressDialog.isShowing()) {
+                                customProgressDialog.dismiss();
+                            }
                             if (adCloseListener != null) {
                                 adCloseListener.onAdClosed();
                             }
@@ -144,7 +158,9 @@ public class Interstitial_Ads_AdmobBack {
                             super.onAdDismissedFullScreenContent();
 
                             AppPreference.isFullScreenShow = false;
-
+                            if (customProgressDialog.isShowing()) {
+                                customProgressDialog.dismiss();
+                            }
                             if (adCloseListener != null) {
                                 adCloseListener.onAdClosed();
                             }
@@ -162,6 +178,9 @@ public class Interstitial_Ads_AdmobBack {
                 @Override
                 public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                     adManagerInterstitialAd = null;
+                    if (customProgressDialog.isShowing()) {
+                        customProgressDialog.dismiss();
+                    }
                     AppPreference.isFullScreenShow = false;
                 }
             });
