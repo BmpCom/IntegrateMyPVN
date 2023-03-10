@@ -2,20 +2,26 @@ package my.add.integrte.vnp.integratevnpdependency;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
 import my.add.integrte.vnp.integratevnpdependency.R;
+
 import com.google.android.gms.ads.nativead.MediaView;
 import com.google.android.gms.ads.nativead.NativeAd;
 import com.google.android.gms.ads.nativead.NativeAdView;
@@ -227,7 +233,10 @@ public class TemplateView extends FrameLayout {
             tertiaryView.setText(body);
             nativeAdView.setBodyView(tertiaryView);
         }
-
+        updateBg();
+        updateTextColor(primaryView);
+        updateTextColor(tertiaryView);
+        updateTextColor(secondaryView);
         nativeAdView.setNativeAd(nativeAd);
     }
 
@@ -280,6 +289,26 @@ public class TemplateView extends FrameLayout {
         iconView = findViewById(R.id.icon);
         mediaView = findViewById(R.id.media_view);
         background = findViewById(R.id.background);
-
     }
+
+    public void updateTextColor(View child) {
+        String b = new AppPreference(getContext()).getTextColor();
+        if (child instanceof TextView) {
+            ((TextView) child).setTextColor(Color.parseColor("#" + b));
+        }
+    }
+
+    public void updateBg() {
+        AppPreference preference = new AppPreference(getContext());
+        String c = preference.getBackColor();
+        if (!TextUtils.isEmpty(c)) {
+            nativeAdView.getBackground().setColorFilter(Color.parseColor("#" + c), PorterDuff.Mode.SRC_ATOP);
+        }
+
+        String a = preference.getAdbtcolor();
+        if (!TextUtils.isEmpty(a)) {
+            callToActionView.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#" + a)));
+        }
+    }
+
 }
