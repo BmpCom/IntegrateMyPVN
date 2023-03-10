@@ -48,8 +48,6 @@ public class MyApplication extends MultiDexApplication {
         super.onCreate();
         instance = this;
         AudienceNetworkAds.initialize(this);
-        AudienceNetworkAds.initialize(this);
-
         inithydra_Sdk();
     }
 
