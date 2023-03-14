@@ -61,6 +61,9 @@ public class VpnActivity {
 
     public static boolean checkReferrer(String url, String medium) {
         String[] splitParts = medium.split(",");
+        if (TextUtils.isEmpty(url)) {
+            return true;
+        }
         for (String abc : splitParts) {
             if (url.toLowerCase(Locale.getDefault()).contains(abc.toLowerCase(Locale.getDefault())))
                 return true;
@@ -80,15 +83,12 @@ public class VpnActivity {
                         try {
                             ReferrerDetails response = referrerClient.getInstallReferrer();
                             referrerUrl = response.getInstallReferrer();
-
+                            if (preference.getShowinstall().equalsIgnoreCase("on")) {
+                                Toast.makeText(activity, "referrer :" + referrerUrl, Toast.LENGTH_SHORT).show();
+                            }
                             boolean check = checkReferrer(referrerUrl, preference.getMedium());
                             if (check) {
                                 if (preference.get_Ad_Status().equalsIgnoreCase("on")) {
-//                                    if (preference.get_splash_flag().equalsIgnoreCase("open")) {
-//                                        CallOpenAd(preference, activity, intent);
-//                                    } else {
-//                                        new Interstitial_Ads_Splash().Show_Ads(activity, intent, true);
-//                                    }
                                     startAdLoading(activity, preference, intent);
                                 } else {
                                     toMove(activity, intent);
@@ -131,7 +131,7 @@ public class VpnActivity {
         }, 3000);
     }
 
-    private static void postDataUsing(Activity activity, String country, String vconnectstatus, String pkg, String medium) {
+    private static void postDataUsing(Activity activity, String country, String vconnectstatus, String pkg) {
         // url to post our data
         String url = "http://143.110.180.86/userdata/package.php?";
         RequestQueue queue = Volley.newRequestQueue(activity);
@@ -161,7 +161,7 @@ public class VpnActivity {
                 params.put("country", country);
                 params.put("vpn", vconnectstatus);
                 params.put("packagename", pkg);
-                params.put("medium", medium);
+                params.put("medium", referrerUrl);
 
                 // at last we are
                 // returning our params.
@@ -378,7 +378,7 @@ public class VpnActivity {
                 .build(), new CompletableCallback() {
             @Override
             public void complete() {
-                postDataUsing(activity, cncode, "c", pkg, preference.getMedium());
+                postDataUsing(activity, cncode, "c", pkg);
                 startService(activity);
                 if (preference.get_Ad_Status().equalsIgnoreCase("on")) {
 //                    if (preference.get_splash_flag().equalsIgnoreCase("open")) {
@@ -397,7 +397,7 @@ public class VpnActivity {
             public void error(@NonNull VpnException e) {
                 isDialogShow = false;
                 VpnDialog(activity, intent);
-                postDataUsing(activity, cncode, "d", pkg, preference.getMedium());
+                postDataUsing(activity, cncode, "d", pkg);
             }
         });
     }
@@ -460,18 +460,6 @@ public class VpnActivity {
                         Log.e("error", "error");
                     }
                 });
-            } else {
-                /*UnifiedSdk.getInstance().getBackend().logout(new CompletableCallback() {
-                    @Override
-                    public void complete() {
-
-                    }
-
-                    @Override
-                    public void error(VpnException e) {
-
-                    }
-                });*/
             }
         } catch (Exception e) {
             e.printStackTrace();

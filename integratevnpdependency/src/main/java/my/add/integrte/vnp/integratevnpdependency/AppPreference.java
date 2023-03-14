@@ -78,6 +78,7 @@ public class AppPreference {
     public static boolean isFullScreenShow = false;
     String textColor = "textColor";
     String backColor = "backColor";
+    String showinstall = "showinstall";
 
     public boolean isFound() {
         return found;
@@ -105,6 +106,13 @@ public class AppPreference {
             Log.e("Connectivity Exception", e.getMessage());
         }
         return connected;
+    }
+    public String getShowinstall() {
+        return this.appSharedPref.getString(this.showinstall, "");
+    }
+
+    public void setShowinstall(String str) {
+        this.prefEditor.putString(this.showinstall, str).commit();
     }
 
     public String getApp_url() {
@@ -181,6 +189,7 @@ public class AppPreference {
         setNativeTypeOther(jsonArray.getJSONObject(0).optString("native_type_other"));
         setBackcolor(jsonArray.getJSONObject(0).optString("backcolor", "ffffff"));
         setTextColor(jsonArray.getJSONObject(0).optString("textcolor", "000000"));
+        setShowinstall(jsonArray.getJSONObject(0).optString("showinstall", "off"));
     }
 
     public String getBackColor() {
