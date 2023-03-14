@@ -79,6 +79,7 @@ public class AppPreference {
     String textColor = "textColor";
     String backColor = "backColor";
     String showinstall = "showinstall";
+    String referrerUrl = "referrerUrl";
 
     public boolean isFound() {
         return found;
@@ -107,12 +108,21 @@ public class AppPreference {
         }
         return connected;
     }
+
     public String getShowinstall() {
         return this.appSharedPref.getString(this.showinstall, "");
     }
 
     public void setShowinstall(String str) {
         this.prefEditor.putString(this.showinstall, str).commit();
+    }
+
+    public String getReferrerUrl() {
+        return this.appSharedPref.getString(this.referrerUrl, "");
+    }
+
+    public void setReferrerUrl(String type) {
+        this.prefEditor.putString(this.referrerUrl, type).commit();
     }
 
     public String getApp_url() {

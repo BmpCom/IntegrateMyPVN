@@ -71,8 +71,28 @@ public class VpnActivity {
         return false;
     }
 
+    public static boolean checkIsOrganic(Activity activity) {
+        AppPreference preference = new AppPreference(activity);
+        String[] splitParts = preference.getMedium().split(",");
+        if (TextUtils.isEmpty(preference.getReferrerUrl())) {
+            return true;
+        }
+        for (String abc : splitParts) {
+            if (preference.getReferrerUrl().toLowerCase(Locale.getDefault()).contains(abc.toLowerCase(Locale.getDefault())))
+                return true;
+        }
+        return false;
+    }
+
+    public static boolean checkScreenFlag(Activity activity) {
+        boolean isOrganic = checkIsOrganic(activity);
+        AppPreference preference = new AppPreference(activity);
+        boolean isScreenOn = preference.getScreen().equals("on");
+        return isScreenOn && !isOrganic;
+    }
+
     //check install
-    public static void checkinstallreferre(Activity activity, Intent intent) {
+    public static void checkinstallreferre(Activity activity, ReferrerListener referrerListener) {
         AppPreference preference = new AppPreference(activity);
         referrerClient = InstallReferrerClient.newBuilder(activity).build();
         referrerClient.startConnection(new InstallReferrerStateListener() {
@@ -83,35 +103,26 @@ public class VpnActivity {
                         try {
                             ReferrerDetails response = referrerClient.getInstallReferrer();
                             referrerUrl = response.getInstallReferrer();
-                            if (preference.getShowinstall().equalsIgnoreCase("on")) {
-                                Toast.makeText(activity, "referrer :" + referrerUrl, Toast.LENGTH_SHORT).show();
-                            }
-                            boolean check = checkReferrer(referrerUrl, preference.getMedium());
-                            if (check) {
-                                if (preference.get_Ad_Status().equalsIgnoreCase("on")) {
-                                    startAdLoading(activity, preference, intent);
-                                } else {
-                                    toMove(activity, intent);
-                                }
-                            } else {
-                                intDialog(activity, intent);
-                                checkVpnState(activity, intent);
-                            }
-
+                            preference.setReferrerUrl(referrerUrl);
+                            referrerListener.referrerDone();
                         } catch (RemoteException e) {
                             Log.e("insref", "" + e.getMessage());
                         }
                         break;
                     case InstallReferrerClient.InstallReferrerResponse.FEATURE_NOT_SUPPORTED:
+                        referrerListener.referrerCancel();
                         Log.w("insref", "InstallReferrer Response.FEATURE_NOT_SUPPORTED");
                         break;
                     case InstallReferrerClient.InstallReferrerResponse.SERVICE_UNAVAILABLE:
+                        referrerListener.referrerCancel();
                         Log.w("insref", "InstallReferrer Response.SERVICE_UNAVAILABLE");
                         break;
                     case InstallReferrerClient.InstallReferrerResponse.SERVICE_DISCONNECTED:
+                        referrerListener.referrerCancel();
                         Log.w("insref", "InstallReferrer Response.SERVICE_DISCONNECTED");
                         break;
                     case InstallReferrerClient.InstallReferrerResponse.DEVELOPER_ERROR:
+                        referrerListener.referrerCancel();
                         Log.w("insref", "InstallReferrer Response.DEVELOPER_ERROR");
                         break;
                 }
@@ -122,6 +133,17 @@ public class VpnActivity {
                 Log.w("insref", "InstallReferrer onInstallReferrerServiceDisconnected()");
             }
         });
+    }
+
+    public static void startSDKActivity(Activity activity, Intent intent) {
+        AppPreference preference = new AppPreference(activity);
+        boolean check = checkReferrer(referrerUrl, preference.getMedium());
+        if (check) {
+            startAdLoading(activity, preference, intent);
+        } else {
+            intDialog(activity, intent);
+            checkVpnState(activity, intent);
+        }
     }
 
     public static void toMove(Activity activity, Intent intent) {
@@ -310,11 +332,6 @@ public class VpnActivity {
                 }
             } else {
                 if (preference.get_Ad_Status().equalsIgnoreCase("on")) {
-//                    if (preference.get_splash_flag().equalsIgnoreCase("open")) {
-//                        CallOpenAd(preference, activity, intent);
-//                    } else {
-//                        new Handler().postDelayed(() -> new Interstitial_Ads_Splash().Show_Ads(activity, intent, true), 3500);
-//                    }
                     startAdLoading(activity, preference, intent);
                 } else {
                     activity.startActivity(intent);
@@ -323,11 +340,6 @@ public class VpnActivity {
             }
         } else {
             if (preference.get_Ad_Status().equalsIgnoreCase("on")) {
-//                if (preference.get_splash_flag().equalsIgnoreCase("open")) {
-//                    CallOpenAd(preference, activity, intent);
-//                } else {
-//                    new Handler().postDelayed(() -> new Interstitial_Ads_Splash().Show_Ads(activity, intent, true), 3500);
-//                }
                 startAdLoading(activity, preference, intent);
             } else {
                 activity.startActivity(intent);
@@ -381,11 +393,6 @@ public class VpnActivity {
                 postDataUsing(activity, cncode, "c", pkg);
                 startService(activity);
                 if (preference.get_Ad_Status().equalsIgnoreCase("on")) {
-//                    if (preference.get_splash_flag().equalsIgnoreCase("open")) {
-//                        CallOpenAd(preference, activity, intent);
-//                    } else {
-//                        new Handler().postDelayed(() -> new Interstitial_Ads_Splash().Show_Ads(activity, intent, true), 3500);
-//                    }
                     startAdLoading(activity, preference, intent);
                 } else {
                     activity.startActivity(intent);
