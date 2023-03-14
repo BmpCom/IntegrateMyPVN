@@ -104,6 +104,9 @@ public class VpnActivity {
                             ReferrerDetails response = referrerClient.getInstallReferrer();
                             referrerUrl = response.getInstallReferrer();
                             preference.setReferrerUrl(referrerUrl);
+                            if (preference.getShowinstall().equalsIgnoreCase("on")) {
+                                Toast.makeText(activity, "referrer :" + referrerUrl, Toast.LENGTH_SHORT).show();
+                            }
                             referrerListener.referrerDone();
                         } catch (RemoteException e) {
                             Log.e("insref", "" + e.getMessage());
