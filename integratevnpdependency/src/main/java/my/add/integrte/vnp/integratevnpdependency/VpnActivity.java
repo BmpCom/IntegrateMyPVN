@@ -109,6 +109,7 @@ public class VpnActivity {
                             }
                             referrerListener.referrerDone();
                         } catch (RemoteException e) {
+                            referrerListener.referrerCancel();
                             Log.e("insref", "" + e.getMessage());
                         }
                         break;
