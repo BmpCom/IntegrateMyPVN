@@ -104,7 +104,6 @@ public class Native_Ads_Preload_1 {
             viewGroup.addView(inflate);
 
         } else {
-            viewGroup.setVisibility(View.GONE);
             Qureka_Predchamp_Native_Banner(viewGroup);
         }
     }
@@ -125,7 +124,6 @@ public class Native_Ads_Preload_1 {
             viewGroup.addView(inflate);
 
         } else {
-            viewGroup.setVisibility(View.GONE);
             Qureka_Predchamp_Native_Banner(viewGroup);
         }
     }
@@ -144,7 +142,6 @@ public class Native_Ads_Preload_1 {
             viewGroup.removeAllViews();
             viewGroup.addView(inflate);
         } else {
-            viewGroup.setVisibility(View.GONE);
             Qureka_Predchamp_Native(viewGroup);
         }
     }
@@ -163,7 +160,6 @@ public class Native_Ads_Preload_1 {
             viewGroup.removeAllViews();
             viewGroup.addView(inflate);
         } else {
-            viewGroup.setVisibility(View.GONE);
             Qureka_Predchamp_Native(viewGroup);
         }
     }
@@ -193,7 +189,7 @@ public class Native_Ads_Preload_1 {
                 BannerContainer.removeAllViews();
                 BannerContainer.addView(view);
             } else {
-                new Native_Ads_Static(context).Native_Ads(BannerContainer);
+                BannerContainer.setVisibility(View.GONE);
             }
         }
     }
@@ -225,7 +221,7 @@ public class Native_Ads_Preload_1 {
                 BannerContainer.removeAllViews();
                 BannerContainer.addView(view);
             } else {
-                new Native_Ads_Static(context).Native_Banner_Ads(BannerContainer);
+                BannerContainer.setVisibility(View.GONE);
             }
         }
     }
@@ -249,7 +245,7 @@ public class Native_Ads_Preload_1 {
                 BannerContainer.removeAllViews();
                 BannerContainer.addView(view);
             } else {
-                new Native_Ads_Static(context).Adaptive_Banner(BannerContainer);
+                BannerContainer.setVisibility(View.GONE);
             }
         }
     }
