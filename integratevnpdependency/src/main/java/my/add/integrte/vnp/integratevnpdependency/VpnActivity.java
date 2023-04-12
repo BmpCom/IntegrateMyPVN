@@ -370,9 +370,17 @@ public class VpnActivity {
     private static void startAdLoading(Activity activity, AppPreference preference, Intent intent) {
         MyApplication.loadAds(initializationStatus -> {
             if (preference.get_splash_flag().equalsIgnoreCase("open")) {
-                CallOpenAd(preference, activity, intent);
+                if (preference.getOpenflag().equalsIgnoreCase("on")) {
+                    CallOpenAd(preference, activity, intent);
+                } else {
+                    activity.startActivity(intent);
+                }
             } else {
-                new Handler().postDelayed(() -> new Interstitial_Ads_Splash().Show_Ads(activity, intent, true), 1000);
+                if (preference.getFullflag().equalsIgnoreCase("on")) {
+                    new Handler().postDelayed(() -> new Interstitial_Ads_Splash().Show_Ads(activity, intent, true), 1000);
+                } else {
+                    new Handler().postDelayed(() -> activity.startActivity(intent), 1000);
+                }
             }
         });
     }

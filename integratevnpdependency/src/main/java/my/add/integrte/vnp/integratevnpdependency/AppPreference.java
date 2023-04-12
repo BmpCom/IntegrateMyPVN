@@ -27,6 +27,11 @@ public class AppPreference {
     String Reward_Counter = "Reward_Counter";
     String Click_Flag = "Click_Flag";
     String Click_Count = "Click_Count";
+    String Organic_Click_Count = "Organic_Click_Count";
+    String nativeflag = "native";
+    String bannerflag = "banner";
+    String fullflag = "fullflag";
+    String openflag = "openflag";
 
     String Qureka_Link = "Qureka_Link";
     String Ad_Time_Interval = "Ad_Time_Interval";
@@ -179,6 +184,7 @@ public class AppPreference {
         set_Admob_OpenApp_Id3(jsonArray.getJSONObject(0).optString("admob-open3"));
         set_Click_Flag(jsonArray.getJSONObject(0).optString("clickflag"));
         set_Click_Count(jsonArray.getJSONObject(0).optString("click"));
+        setOrganic_Click_Count(jsonArray.getJSONObject(0).optString("orgclick"));
         set_Splash_OpenApp_Id(jsonArray.getJSONObject(0).optString("admob-splash-open"));
         set_splash_flag(jsonArray.getJSONObject(0).optString("splash"));
         set_Facebook_Interstitial(jsonArray.getJSONObject(0).optString("fb-full"));
@@ -195,6 +201,10 @@ public class AppPreference {
         setPage(jsonArray.getJSONObject(0).optString("page"));
         setBackflag(jsonArray.getJSONObject(0).optString("backflag"));
         setBackclick(jsonArray.getJSONObject(0).optString("backclick"));
+        setNativeflag(jsonArray.getJSONObject(0).optString("native"));
+        setBannerflag(jsonArray.getJSONObject(0).optString("banner"));
+        setOpenflag(jsonArray.getJSONObject(0).optString("open"));
+        setFullflag(jsonArray.getJSONObject(0).optString("full"));
         setNativeTypeList(jsonArray.getJSONObject(0).optString("native_type_list"));
         setNativeTypeOther(jsonArray.getJSONObject(0).optString("native_type_other"));
         setBackcolor(jsonArray.getJSONObject(0).optString("backcolor", "ffffff"));
@@ -359,12 +369,52 @@ public class AppPreference {
         this.prefEditor.putString(this.Click_Count, str).commit();
     }
 
+    public String getOrganic_Click_Count() {
+        return this.appSharedPref.getString(this.Organic_Click_Count, "");
+    }
+
+    public void setOrganic_Click_Count(String Organic_Click_Count) {
+        this.prefEditor.putString(this.Organic_Click_Count, Organic_Click_Count).commit();
+    }
+
     public String get_Admob_Rewarded_Id() {
         return this.appSharedPref.getString(this.Admob_Rewarded_Id, "");
     }
 
     public void set_Admob_Rewarded_Id(String str) {
         this.prefEditor.putString(this.Admob_Rewarded_Id, str).commit();
+    }
+
+    public String getFullflag() {
+        return this.appSharedPref.getString(this.fullflag, "");
+    }
+
+    public void setFullflag(String str) {
+        this.prefEditor.putString(this.fullflag, str).commit();
+    }
+
+    public String getOpenflag() {
+        return this.appSharedPref.getString(this.openflag, "");
+    }
+
+    public void setOpenflag(String str) {
+        this.prefEditor.putString(this.openflag, str).commit();
+    }
+
+    public String getNativeflag() {
+        return this.appSharedPref.getString(this.nativeflag, "");
+    }
+
+    public void setNativeflag(String str) {
+        this.prefEditor.putString(this.nativeflag, str).commit();
+    }
+
+    public String getBannerflag() {
+        return this.appSharedPref.getString(this.bannerflag, "");
+    }
+
+    public void setBannerflag(String str) {
+        this.prefEditor.putString(this.bannerflag, str).commit();
     }
 
     public String get_Ad_Status() {

@@ -57,19 +57,32 @@ public class Native_Ads_Preload_1 {
         String type = isList ? new AppPreference(context).getNativeTypeList() : new AppPreference(context).getNativeTypeOther();
         switch (type) {
             case "banner":
-                Native_Banner_Ads(viewGroup);
+                if (preference.getNativeflag().equalsIgnoreCase("on")) {
+                    Native_Banner_Ads(viewGroup);
+                } else {
+                    viewGroup.setVisibility(View.GONE);
+                }
                 break;
-
             case "small":
-                Native_Small_Ads(viewGroup);
+                if (preference.getNativeflag().equalsIgnoreCase("on")) {
+                    Native_Small_Ads(viewGroup);
+                } else {
+                    viewGroup.setVisibility(View.GONE);
+                }
                 break;
-
             case "medium":
-                Native_Medium_Size(viewGroup);
+                if (preference.getNativeflag().equalsIgnoreCase("on")) {
+                    Native_Medium_Size(viewGroup);
+                } else {
+                    viewGroup.setVisibility(View.GONE);
+                }
                 break;
-
             case "large":
-                Native_Large_Size(viewGroup);
+                if (preference.getNativeflag().equalsIgnoreCase("on")) {
+                    Native_Large_Size(viewGroup);
+                } else {
+                    viewGroup.setVisibility(View.GONE);
+                }
                 break;
         }
     }
