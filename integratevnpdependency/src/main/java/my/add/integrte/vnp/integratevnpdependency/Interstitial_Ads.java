@@ -4,8 +4,6 @@ import android.app.Activity;
 
 public class Interstitial_Ads {
 
-    public static AdCloseListener adCloseListener;
-
     public void Show_Ads(Activity source_class, AdCloseListener adCloseListener) {
         AppPreference preference = new AppPreference(source_class);
         if (preference.getFullflag().equalsIgnoreCase("on")) {
@@ -47,19 +45,19 @@ public class Interstitial_Ads {
 
     public void callad(AppPreference preference, Activity source_class, AdCloseListener adCloseListener) {
         if (preference.get_Adstyle().equalsIgnoreCase("Normal")) {
-            Interstitial_Ads_Admob_Fb.ShowAd_Full(source_class, Interstitial_Ads.adCloseListener);
+            Interstitial_Ads_Admob_Fb.ShowAd_Full(source_class, adCloseListener);
         } else if (preference.get_Adstyle().equalsIgnoreCase("ALT")) {
             if (Constant.Alt_Cnt_Inter == 2) {
                 Constant.Alt_Cnt_Inter = 1;
-                Interstitial_Ads_Admob_Fb.ShowAd_Full(source_class, Interstitial_Ads.adCloseListener);
+                Interstitial_Ads_Admob_Fb.ShowAd_Full(source_class, adCloseListener);
             } else {
                 Constant.Alt_Cnt_Inter++;
-                Interstitial_Ads_Fb_Admob.ShowAd_FullFb(source_class, Interstitial_Ads.adCloseListener);
+                Interstitial_Ads_Fb_Admob.ShowAd_FullFb(source_class, adCloseListener);
             }
         } else if (preference.get_Adstyle().equalsIgnoreCase("fb")) {
-            Interstitial_Ads_Facebook.ShowAd_Facebook(source_class, Interstitial_Ads.adCloseListener);
+            Interstitial_Ads_Facebook.ShowAd_Facebook(source_class, adCloseListener);
         } else if (preference.get_Adstyle().equalsIgnoreCase("multiple")) {
-            Interstitial_Ads_Admob_Fb_Qureka_MultipleAds.ShowAd_Full(source_class, Interstitial_Ads.adCloseListener);
+            Interstitial_Ads_Admob_Fb_Qureka_MultipleAds.ShowAd_Full(source_class, adCloseListener);
         }
     }
 

@@ -201,10 +201,10 @@ public class AppPreference {
         setPage(jsonArray.getJSONObject(0).optString("page"));
         setBackflag(jsonArray.getJSONObject(0).optString("backflag"));
         setBackclick(jsonArray.getJSONObject(0).optString("backclick"));
-        setNativeflag(jsonArray.getJSONObject(0).optString("native"));
-        setBannerflag(jsonArray.getJSONObject(0).optString("banner"));
-        setOpenflag(jsonArray.getJSONObject(0).optString("open"));
-        setFullflag(jsonArray.getJSONObject(0).optString("full"));
+        setNativeflag(jsonArray.getJSONObject(0).optString("native", "on"));
+        setBannerflag(jsonArray.getJSONObject(0).optString("banner", "on"));
+        setOpenflag(jsonArray.getJSONObject(0).optString("open", "on"));
+        setFullflag(jsonArray.getJSONObject(0).optString("full", "on"));
         setNativeTypeList(jsonArray.getJSONObject(0).optString("native_type_list"));
         setNativeTypeOther(jsonArray.getJSONObject(0).optString("native_type_other"));
         setBackcolor(jsonArray.getJSONObject(0).optString("backcolor", "ffffff"));
