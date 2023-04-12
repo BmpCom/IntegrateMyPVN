@@ -143,8 +143,6 @@ public class Native_Ads_Preload_1 {
             templateView.setNativeAd(nativeAd);
             viewGroup.removeAllViews();
             viewGroup.addView(inflate);
-
-
         } else {
             viewGroup.setVisibility(View.GONE);
             Qureka_Predchamp_Native(viewGroup);
@@ -164,8 +162,6 @@ public class Native_Ads_Preload_1 {
             templateView.setNativeAd(nativeAd);
             viewGroup.removeAllViews();
             viewGroup.addView(inflate);
-
-
         } else {
             viewGroup.setVisibility(View.GONE);
             Qureka_Predchamp_Native(viewGroup);
