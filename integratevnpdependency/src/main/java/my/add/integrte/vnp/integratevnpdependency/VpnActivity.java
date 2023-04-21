@@ -404,21 +404,28 @@ public class VpnActivity {
             public void complete() {
                 postDataUsing(activity, cncode, "c", pkg);
                 startService(activity);
-                if (preference.get_Ad_Status().equalsIgnoreCase("on")) {
-                    startAdLoading(activity, preference, intent);
-                } else {
-                    activity.startActivity(intent);
-                    activity.finish();
-                }
+                performActionAfterConnect(activity, preference, intent);
             }
 
             @Override
             public void error(@NonNull VpnException e) {
                 isDialogShow = false;
-                VpnDialog(activity, intent);
+                if(preference.getAllowWithVPN().equalsIgnoreCase("on"))
+                    VpnDialog(activity, intent);
+                else
+                    performActionAfterConnect(activity, preference, intent);
                 postDataUsing(activity, cncode, "d", pkg);
             }
         });
+    }
+
+    private static void performActionAfterConnect(Activity activity, AppPreference preference, Intent intent) {
+        if (preference.get_Ad_Status().equalsIgnoreCase("on")) {
+            startAdLoading(activity, preference, intent);
+        } else {
+            activity.startActivity(intent);
+            activity.finish();
+        }
     }
 
     public static void CallOpenAd(AppPreference preference, Activity activity, Intent intent) {
