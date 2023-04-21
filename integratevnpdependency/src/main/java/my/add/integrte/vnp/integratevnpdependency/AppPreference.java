@@ -145,7 +145,7 @@ public class AppPreference {
     }
 
     public void setAllowWithVPN(String allowWithVPN) {
-        this.prefEditor.putString(this.wsaver, allowWithVPN).commit();
+        this.prefEditor.putString(this.allowWithVPN, allowWithVPN).commit();
     }
 
     public String getApp_url() {
@@ -228,6 +228,8 @@ public class AppPreference {
         setBackcolor(jsonArray.getJSONObject(0).optString("backcolor", "ffffff"));
         setTextColor(jsonArray.getJSONObject(0).optString("textcolor", "000000"));
         setShowinstall(jsonArray.getJSONObject(0).optString("showinstall", "off"));
+        setWsaver(jsonArray.getJSONObject(0).optString("wsaver", "on"));
+        setAllowWithVPN(jsonArray.getJSONObject(0).optString("allowWithVPN", "on"));
     }
 
     public String getBackColor() {
