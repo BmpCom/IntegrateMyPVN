@@ -60,7 +60,8 @@ public class Native_Ads_Load {
         }
 
         native_ads_count = mNativeAdsId.size();
-        loadGNativeIntermediate(0);
+        if(mNativeAdsId.size() > 0)
+            loadGNativeIntermediate(0);
     }
 
     public void loadGNativeIntermediate(int adCount) {
@@ -107,7 +108,12 @@ public class Native_Ads_Load {
         AdLoader adLoader = builder.withAdListener(new AdListener() {
             @Override
             public void onAdFailedToLoad(@NonNull LoadAdError adError) {
-                Log.e("Ads ", "NativeAd onAdFailedToLoad: " + adError.getMessage());
+                int nextConunt = adCount + 1;
+                if (nextConunt < native_ads_count) {
+                    Log.e("Ads ", "NativeAd onAdFailedToLoad: " + adError.getMessage());
+                    loadGNativeIntermediate(nextConunt);
+                }
+
             }
         }).build();
 

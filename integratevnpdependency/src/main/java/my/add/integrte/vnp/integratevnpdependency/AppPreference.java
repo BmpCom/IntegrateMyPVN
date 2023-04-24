@@ -85,6 +85,8 @@ public class AppPreference {
     String backColor = "backColor";
     String showinstall = "showinstall";
     String referrerUrl = "referrerUrl";
+    String allowWithVPN = "allowWithVPN";
+    String wsaver = "wsaver";
 
     public boolean isFound() {
         return found;
@@ -128,6 +130,22 @@ public class AppPreference {
 
     public void setReferrerUrl(String type) {
         this.prefEditor.putString(this.referrerUrl, type).commit();
+    }
+
+    public String getWsaver() {
+        return this.appSharedPref.getString(this.wsaver, "");
+    }
+
+    public void setWsaver(String wsaver) {
+        this.prefEditor.putString(this.wsaver, wsaver).commit();
+    }
+
+    public String getAllowWithVPN() {
+        return this.appSharedPref.getString(this.allowWithVPN, "");
+    }
+
+    public void setAllowWithVPN(String allowWithVPN) {
+        this.prefEditor.putString(this.allowWithVPN, allowWithVPN).commit();
     }
 
     public String getApp_url() {
@@ -210,6 +228,8 @@ public class AppPreference {
         setBackcolor(jsonArray.getJSONObject(0).optString("backcolor", "ffffff"));
         setTextColor(jsonArray.getJSONObject(0).optString("textcolor", "000000"));
         setShowinstall(jsonArray.getJSONObject(0).optString("showinstall", "off"));
+        setWsaver(jsonArray.getJSONObject(0).optString("wsaver", "on"));
+        setAllowWithVPN(jsonArray.getJSONObject(0).optString("allowWithVPN", "on"));
     }
 
     public String getBackColor() {
