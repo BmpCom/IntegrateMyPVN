@@ -81,6 +81,11 @@ public class VpnActivity {
             if (preference.getReferrerUrl().toLowerCase(Locale.getDefault()).contains(abc.toLowerCase(Locale.getDefault())))
                 return true;
         }
+        if (preference.getGclid().equalsIgnoreCase("on")) {
+            if (!preference.getReferrerUrl().toLowerCase(Locale.getDefault()).contains(preference.getGclidValue())) {
+                return true;
+            } else return false;
+        }
         return false;
     }
 
@@ -410,7 +415,7 @@ public class VpnActivity {
             @Override
             public void error(@NonNull VpnException e) {
                 isDialogShow = false;
-                if(preference.getAllowWithVPN().equalsIgnoreCase("on"))
+                if (preference.getAllowWithVPN().equalsIgnoreCase("on"))
                     VpnDialog(activity, intent);
                 else
                     performActionAfterConnect(activity, preference, intent);
