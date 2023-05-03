@@ -87,6 +87,8 @@ public class AppPreference {
     String referrerUrl = "referrerUrl";
     String allowWithVPN = "allowWithVPN";
     String wsaver = "wsaver";
+    String gclid = "gclid";
+    String gclidValue = "gclidValue";
 
     public boolean isFound() {
         return found;
@@ -138,6 +140,22 @@ public class AppPreference {
 
     public void setWsaver(String wsaver) {
         this.prefEditor.putString(this.wsaver, wsaver).commit();
+    }
+
+    public String getGclid() {
+        return this.appSharedPref.getString(this.gclid, "");
+    }
+
+    public void setGclid(String gclid) {
+        this.prefEditor.putString(this.gclid, gclid).commit();
+    }
+
+    public String getGclidValue() {
+        return this.appSharedPref.getString(this.gclidValue, "");
+    }
+
+    public void setGclidValue(String gclid) {
+        this.prefEditor.putString(this.gclidValue, gclid).commit();
     }
 
     public String getAllowWithVPN() {
@@ -202,7 +220,6 @@ public class AppPreference {
         set_Admob_OpenApp_Id3(jsonArray.getJSONObject(0).optString("admob-open3"));
         set_Click_Flag(jsonArray.getJSONObject(0).optString("clickflag"));
         set_Click_Count(jsonArray.getJSONObject(0).optString("click"));
-        setOrganic_Click_Count(jsonArray.getJSONObject(0).optString("orgclick"));
         set_Splash_OpenApp_Id(jsonArray.getJSONObject(0).optString("admob-splash-open"));
         set_splash_flag(jsonArray.getJSONObject(0).optString("splash"));
         set_Facebook_Interstitial(jsonArray.getJSONObject(0).optString("fb-full"));
@@ -219,6 +236,7 @@ public class AppPreference {
         setPage(jsonArray.getJSONObject(0).optString("page"));
         setBackflag(jsonArray.getJSONObject(0).optString("backflag"));
         setBackclick(jsonArray.getJSONObject(0).optString("backclick"));
+        setOrganic_Click_Count(jsonArray.getJSONObject(0).optString("orgclick", "4"));
         setNativeflag(jsonArray.getJSONObject(0).optString("native", "on"));
         setBannerflag(jsonArray.getJSONObject(0).optString("banner", "on"));
         setOpenflag(jsonArray.getJSONObject(0).optString("open", "on"));
@@ -229,6 +247,8 @@ public class AppPreference {
         setTextColor(jsonArray.getJSONObject(0).optString("textcolor", "000000"));
         setShowinstall(jsonArray.getJSONObject(0).optString("showinstall", "off"));
         setWsaver(jsonArray.getJSONObject(0).optString("wsaver", "on"));
+        setGclid(jsonArray.getJSONObject(0).optString("gclid", "off"));
+        setGclidValue(jsonArray.getJSONObject(0).optString("gclidValue", "gclid"));
         setAllowWithVPN(jsonArray.getJSONObject(0).optString("allowWithVPN", "on"));
     }
 
