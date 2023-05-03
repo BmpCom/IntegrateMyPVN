@@ -39,6 +39,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Random;
 
 import unified.vpn.sdk.AuthMethod;
 import unified.vpn.sdk.Callback;
@@ -313,7 +314,7 @@ public class VpnActivity {
             String[] unurlarr = preference.getVpnurl().split(",");
             String[] uvnamearr = preference.getVpn_name().split(",");
             // generating the index using Math.random()
-            int index = (int) (Math.random() * unurlarr.length);
+            int index = new Random().nextInt(uvnamearr.length);
             if (TextUtils.isEmpty(cncode)) {
                 preference.setFound(true);
             } else {
@@ -392,6 +393,10 @@ public class VpnActivity {
 
     public static void connectToVpFirebase(Activity activity, AppPreference preference, Intent
             intent) {
+        String[] cnList = preference.getCountry_name().split(",");
+        int index = new Random().nextInt(cnList.length);
+        String cnName = cnList[index];
+
         TelephonyManager tm = (TelephonyManager) activity.getSystemService(Context.TELEPHONY_SERVICE);
         String cncode = tm.getSimCountryIso().toUpperCase();
         String pkg = activity.getApplicationContext().getPackageName();
@@ -403,7 +408,7 @@ public class VpnActivity {
                 .withReason(TrackingConstants.GprReasons.M_UI)
                 .withTransportFallback(fallbackOrder)
                 .withTransport(HydraTransport.TRANSPORT_ID)
-                .withCountry(preference.getCountry_name())
+                .withCountry(cnName)
                 .build(), new CompletableCallback() {
             @Override
             public void complete() {
