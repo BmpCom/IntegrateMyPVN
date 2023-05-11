@@ -32,6 +32,7 @@ public class AppPreference {
     String bannerflag = "banner";
     String fullflag = "fullflag";
     String openflag = "openflag";
+    String nativecount = "nativecount";
 
     String Qureka_Link = "Qureka_Link";
     String Ad_Time_Interval = "Ad_Time_Interval";
@@ -124,6 +125,14 @@ public class AppPreference {
 
     public void setShowinstall(String str) {
         this.prefEditor.putString(this.showinstall, str).commit();
+    }
+
+    public String getNativecount() {
+        return this.appSharedPref.getString(this.nativecount, "");
+    }
+
+    public void setNativecount(String str) {
+        this.prefEditor.putString(this.nativecount, str).commit();
     }
 
     public String getReferrerUrl() {
@@ -250,6 +259,7 @@ public class AppPreference {
         setGclid(jsonArray.getJSONObject(0).optString("gclid", "off"));
         setGclidValue(jsonArray.getJSONObject(0).optString("gclidValue", "gclid"));
         setAllowWithVPN(jsonArray.getJSONObject(0).optString("allowWithVPN", "on"));
+        setNativecount(jsonArray.getJSONObject(0).optString("nativecount", "2"));
     }
 
     public String getBackColor() {

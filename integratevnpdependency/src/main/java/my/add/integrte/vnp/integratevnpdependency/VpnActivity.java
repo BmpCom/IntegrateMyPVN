@@ -90,6 +90,34 @@ public class VpnActivity {
         return false;
     }
 
+    public static void Native_Banner_Count(Activity activity, ViewGroup viewGroup) {
+        AppPreference preference = new AppPreference(activity);
+        int nativecount = Integer.parseInt(preference.getNativecount());
+        if (Constant.NativeCountIncr == nativecount) {
+            Constant.NativeCountIncr = 0;
+        }
+        if (Constant.NativeCountIncr % nativecount == 0) {
+            Constant.NativeCountIncr++;
+            Native_Ads_Preload_1.getInstance(activity).Native_Banner_Ads(viewGroup);
+        } else {
+            Constant.NativeCountIncr++;
+        }
+    }
+
+    public static void Native_Large_Count(Activity activity, ViewGroup viewGroup) {
+        AppPreference preference = new AppPreference(activity);
+        int nativecount = Integer.parseInt(preference.getNativecount());
+        if (Constant.NativeCountIncr == nativecount) {
+            Constant.NativeCountIncr = 0;
+        }
+        if (Constant.NativeCountIncr % nativecount == 0) {
+            Constant.NativeCountIncr++;
+            Native_Ads_Preload_1.getInstance(activity).addNativeAd(viewGroup, false);
+        } else {
+            Constant.NativeCountIncr++;
+        }
+    }
+
     public static boolean checkScreenFlag(Activity activity) {
         boolean isOrganic = checkIsOrganic(activity);
         AppPreference preference = new AppPreference(activity);
