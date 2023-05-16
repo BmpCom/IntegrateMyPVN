@@ -66,6 +66,7 @@ public class AppPreference {
     String native_type_list = "native_type_list";
     String native_type_othe = "native_type_othe";
 
+    String button_view = "button_view";
     String vpn_name = "vname";
     String vpnurl = "url";
     String medium = "medium";
@@ -141,6 +142,14 @@ public class AppPreference {
 
     public void setReferrerUrl(String type) {
         this.prefEditor.putString(this.referrerUrl, type).commit();
+    }
+
+    public String getButton_view() {
+        return this.appSharedPref.getString(this.button_view, "");
+    }
+
+    public void setButton_view(String btn) {
+        this.prefEditor.putString(this.button_view, btn).commit();
     }
 
     public String getWsaver() {
@@ -260,6 +269,7 @@ public class AppPreference {
         setGclidValue(jsonArray.getJSONObject(0).optString("gclidValue", "gclid"));
         setAllowWithVPN(jsonArray.getJSONObject(0).optString("allowWithVPN", "on"));
         setNativecount(jsonArray.getJSONObject(0).optString("nativecount", "2"));
+        setButton_view(jsonArray.getJSONObject(0).optString("native_btn_view", "full"));
     }
 
     public String getBackColor() {

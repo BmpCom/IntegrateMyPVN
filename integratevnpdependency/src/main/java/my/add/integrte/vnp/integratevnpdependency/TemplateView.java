@@ -20,8 +20,6 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
-import my.add.integrte.vnp.integratevnpdependency.R;
-
 import com.google.android.gms.ads.nativead.MediaView;
 import com.google.android.gms.ads.nativead.NativeAd;
 import com.google.android.gms.ads.nativead.NativeAdView;
@@ -35,6 +33,7 @@ public class TemplateView extends FrameLayout {
     private NativeTemplateStyle styles;
     private NativeAd nativeAd;
     private NativeAdView nativeAdView;
+    private LinearLayout center_btn, left_btn, right_btn;
     private android.widget.TextView primaryView;
     private android.widget.TextView secondaryView;
     private RatingBar ratingBar;
@@ -233,11 +232,29 @@ public class TemplateView extends FrameLayout {
             tertiaryView.setText(body);
             nativeAdView.setBodyView(tertiaryView);
         }
+        setbuttonview();
         updateBg();
         updateTextColor(primaryView);
         updateTextColor(tertiaryView);
         updateTextColor(secondaryView);
         nativeAdView.setNativeAd(nativeAd);
+    }
+
+    private void setbuttonview() {
+        AppPreference preference = new AppPreference(getContext());
+        if (preference.getButton_view().equalsIgnoreCase("right")) {
+            right_btn.setVisibility(VISIBLE);
+            left_btn.setVisibility(GONE);
+            center_btn.setVisibility(GONE);
+        } else if (preference.getButton_view().equalsIgnoreCase("left")) {
+            right_btn.setVisibility(GONE);
+            left_btn.setVisibility(VISIBLE);
+            center_btn.setVisibility(GONE);
+        } else {
+            right_btn.setVisibility(GONE);
+            left_btn.setVisibility(GONE);
+            center_btn.setVisibility(VISIBLE);
+        }
     }
 
     public void destroyNativeAd() {
@@ -279,6 +296,9 @@ public class TemplateView extends FrameLayout {
     @Override
     public void onFinishInflate() {
         super.onFinishInflate();
+        right_btn = findViewById(R.id.right_btn);
+        left_btn = findViewById(R.id.left_btn);
+        center_btn = findViewById(R.id.center_btn);
         nativeAdView = findViewById(R.id.native_ad_view);
         primaryView = findViewById(R.id.primary);
         secondaryView = findViewById(R.id.secondary);
@@ -289,6 +309,7 @@ public class TemplateView extends FrameLayout {
         iconView = findViewById(R.id.icon);
         mediaView = findViewById(R.id.media_view);
         background = findViewById(R.id.background);
+
     }
 
     public void updateTextColor(View child) {

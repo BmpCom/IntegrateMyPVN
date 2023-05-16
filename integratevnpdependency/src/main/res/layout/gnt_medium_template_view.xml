@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <com.google.android.gms.ads.nativead.NativeAdView
         android:id="@+id/native_ad_view"
@@ -113,41 +114,127 @@
 
                     </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/body"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="1dp"
-                        android:maxLines="1"
-                        android:singleLine="true"
-                        android:text=""
-                        android:textColor="#4B4A4A"
-                        android:textSize="12sp" />
-
                 </LinearLayout>
 
             </LinearLayout>
 
-            <androidx.cardview.widget.CardView
+            <LinearLayout
+                android:id="@+id/left_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="3dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="3dp"
-                app:cardCornerRadius="5dp">
+                android:layout_marginTop="3dp"
+                android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/cta"
+                <TextView
+                    android:id="@+id/body"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/ads_button"
-                    android:gravity="center"
-                    android:lines="1"
-                    android:textColor="#FFFFFF"
-                    android:textSize="17sp" />
+                    android:layout_gravity="center"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1"
+                    android:maxLines="2"
+                    android:text=""
+                    android:textColor="#4B4A4A"
+                    android:textSize="15sp" />
 
-            </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="3dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="3dp"
+                    app:cardCornerRadius="10dp">
+
+                    <Button
+                        android:id="@+id/cta"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ads_button"
+                        android:gravity="center"
+                        android:lines="1"
+                        android:textColor="#FFFFFF"
+                        android:textSize="17sp" />
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/right_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                tools:ignore="DuplicateIds">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="3dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="3dp"
+                    app:cardCornerRadius="10dp">
+
+                    <Button
+                        android:id="@+id/cta"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ads_button"
+                        android:gravity="center"
+                        android:lines="1"
+                        android:textColor="#FFFFFF"
+                        android:textSize="17sp" />
+
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/body"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1"
+                    android:maxLines="2"
+                    android:text=""
+                    android:textColor="#4B4A4A"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/center_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                tools:ignore="DuplicateIds">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="3dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="3dp"
+                    app:cardCornerRadius="5dp">
+
+                    <Button
+                        android:id="@+id/cta"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ads_button"
+                        android:gravity="center"
+                        android:lines="1"
+                        android:textColor="#FFFFFF"
+                        android:textSize="17sp"
+                        tools:ignore="DuplicateIds" />
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
         </LinearLayout>
 
     </com.google.android.gms.ads.nativead.NativeAdView>
