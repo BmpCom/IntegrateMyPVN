@@ -4,14 +4,12 @@ import static android.content.ContentValues.TAG;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Color;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,9 +23,6 @@ import com.facebook.ads.NativeAdListener;
 import com.facebook.ads.NativeAdView;
 import com.facebook.ads.NativeBannerAd;
 import com.facebook.ads.NativeBannerAdView;
-
-import my.add.integrte.vnp.integratevnpdependency.R;
-
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdLoader;
 import com.google.android.gms.ads.AdRequest;

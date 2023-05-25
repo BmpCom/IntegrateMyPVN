@@ -18,12 +18,12 @@ public class Constant {
     public static int Alt_Cnt_Banner = 1;
     public static boolean IS_TIME_INTERVAL = true;
     public static int Front_Counter = 0;
-    public static int Back_Counter = 0;
     public static int FullAdCounter = 0;
     public static int NAtiveAdCounter = 0;
     public static int NAtiveBannerAdCounter = 0;
     public static int OpenAdCounter = 0;
     public static int BannerAdCounter = 0;
+    public static int Back_Counter = 0;
     public static int NativeCountIncr = 0;
 
     public static int[] qureka_icon = {R.drawable.qureka_icon1, R.drawable.qureka_icon2, R.drawable.qureka_icon3, R.drawable.qureka_icon4, R.drawable.qureka_icon5};
@@ -40,6 +40,7 @@ public class Constant {
 
     public static String[] predchamp_header = {"Play Quiz & Win Now", "SSC Exam Quiz for 50,000 Coins is Live", "Jeeto 10,000 Coins Abhi!", "Mega quiz for 5,00,000 coins open", "Tech quiz for 50,000 coins open"};
     public static String[] predchamp_description = {"Play SSC Exam Quiz & Win Upto 50,000 Coins", "Play Quiz & Win Now", "Play GK, Math & other quizzes & Win Now", "Your chance of winning is high here! Play Now", "Test your tech skills & win now"};
+    public static String Adval = "0";
 
     public static void Share_App(Context context, String appname, String shortlink) {
         try {

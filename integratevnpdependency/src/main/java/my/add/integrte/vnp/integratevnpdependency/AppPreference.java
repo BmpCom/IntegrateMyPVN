@@ -85,6 +85,8 @@ public class AppPreference {
     public static boolean isFullScreenShow = false;
     String textColor = "textColor";
     String backColor = "backColor";
+    String backclickadstyle = "backclickadstyle";
+    String AdstyleNative = "AdstyleNative";
     String showinstall = "showinstall";
     String referrerUrl = "referrerUrl";
     String allowWithVPN = "allowWithVPN";
@@ -237,39 +239,57 @@ public class AppPreference {
         set_Admob_OpenApp_Id2(jsonArray.getJSONObject(0).optString("admob-open2"));
         set_Admob_OpenApp_Id3(jsonArray.getJSONObject(0).optString("admob-open3"));
         set_Click_Flag(jsonArray.getJSONObject(0).optString("clickflag"));
+        setScreen(jsonArray.getJSONObject(0).optString("screen"));
         set_Click_Count(jsonArray.getJSONObject(0).optString("click"));
+        setOrganic_Click_Count(jsonArray.getJSONObject(0).optString("orgclick", "4"));
+        setGclid(jsonArray.getJSONObject(0).optString("gclid", "off"));
+        setGclidValue(jsonArray.getJSONObject(0).optString("gclidValue", "gclid"));
+        setNativeflag(jsonArray.getJSONObject(0).optString("native", "on"));
+        setBannerflag(jsonArray.getJSONObject(0).optString("banner", "on"));
+        setOpenflag(jsonArray.getJSONObject(0).optString("open", "on"));
+        setFullflag(jsonArray.getJSONObject(0).optString("full", "on"));
         set_Splash_OpenApp_Id(jsonArray.getJSONObject(0).optString("admob-splash-open"));
         set_splash_flag(jsonArray.getJSONObject(0).optString("splash"));
         set_Facebook_Interstitial(jsonArray.getJSONObject(0).optString("fb-full"));
         set_Facebook_Native(jsonArray.getJSONObject(0).optString("fb-native"));
         set_Facebook_Banner(jsonArray.getJSONObject(0).optString("fb-banner"));
         setAdbtcolor(jsonArray.getJSONObject(0).optString("adbtclr"));
+        setPage(jsonArray.getJSONObject(0).optString("page"));
         setVn_status(jsonArray.getJSONObject(0).optString("vn_status"));
         setMedium(jsonArray.getJSONObject(0).optString("medium"));
         setVpn_name(jsonArray.getJSONObject(0).optString("vname"));
         setVpnurl(jsonArray.getJSONObject(0).optString("url"));
         setEcn(jsonArray.getJSONObject(0).optString("ecn"));
         setCountry_name(jsonArray.getJSONObject(0).optString("cn"));
-        setScreen(jsonArray.getJSONObject(0).optString("screen"));
-        setPage(jsonArray.getJSONObject(0).optString("page"));
         setBackflag(jsonArray.getJSONObject(0).optString("backflag"));
         setBackclick(jsonArray.getJSONObject(0).optString("backclick"));
-        setOrganic_Click_Count(jsonArray.getJSONObject(0).optString("orgclick", "4"));
-        setNativeflag(jsonArray.getJSONObject(0).optString("native", "on"));
-        setBannerflag(jsonArray.getJSONObject(0).optString("banner", "on"));
-        setOpenflag(jsonArray.getJSONObject(0).optString("open", "on"));
-        setFullflag(jsonArray.getJSONObject(0).optString("full", "on"));
         setNativeTypeList(jsonArray.getJSONObject(0).optString("native_type_list"));
         setNativeTypeOther(jsonArray.getJSONObject(0).optString("native_type_other"));
         setBackcolor(jsonArray.getJSONObject(0).optString("backcolor", "ffffff"));
         setTextColor(jsonArray.getJSONObject(0).optString("textcolor", "000000"));
         setShowinstall(jsonArray.getJSONObject(0).optString("showinstall", "off"));
         setWsaver(jsonArray.getJSONObject(0).optString("wsaver", "on"));
-        setGclid(jsonArray.getJSONObject(0).optString("gclid", "off"));
-        setGclidValue(jsonArray.getJSONObject(0).optString("gclidValue", "gclid"));
         setAllowWithVPN(jsonArray.getJSONObject(0).optString("allowWithVPN", "on"));
         setNativecount(jsonArray.getJSONObject(0).optString("nativecount", "2"));
         setButton_view(jsonArray.getJSONObject(0).optString("native_btn_view", "full"));
+        setBackclickadstyle(jsonArray.getJSONObject(0).optString("backclickadstyle", "admob"));
+        set_AdstyleNative(jsonArray.getJSONObject(0).optString("AdstyleNative", "fb"));
+    }
+
+    public void set_AdstyleNative(String str) {
+        this.prefEditor.putString(this.AdstyleNative, str).commit();
+    }
+
+    public String get_AdstyleNative() {
+        return this.appSharedPref.getString(this.AdstyleNative, "");
+    }
+
+    public String getBackclickadstyle() {
+        return this.appSharedPref.getString(this.backclickadstyle, "");
+    }
+
+    public void setBackclickadstyle(String backclickadstyle) {
+        this.prefEditor.putString(this.backclickadstyle, backclickadstyle).commit();
     }
 
     public String getBackColor() {

@@ -1,7 +1,6 @@
 package my.add.integrte.vnp.integratevnpdependency;
 
 import static androidx.lifecycle.Lifecycle.Event.ON_START;
-
 import static my.add.integrte.vnp.integratevnpdependency.AppPreference.isFullScreenShow;
 
 import android.app.Activity;
@@ -76,8 +75,6 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
                 Constant.OpenAdCounter = 0;
             }
             Log.e("OpenAdCounter out", String.valueOf(Constant.OpenAdCounter));
-            Log.e("TAG", "open ad: request");
-
             AdRequest request = getAdRequest();
             AppOpenAd.load(
                     myApplication, adUnitIds.get(Constant.OpenAdCounter), request,
@@ -104,7 +101,6 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
         if (isFullScreenShow) {
             return;
         }
-
         if (!isShowingAd && isAdAvailable()) {
             Log.e(LOG_TAG, "Will show ad.");
 
@@ -112,8 +108,6 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
                     new FullScreenContentCallback() {
                         @Override
                         public void onAdDismissedFullScreenContent() {
-                            Log.d(LOG_TAG, "onAdDismissedFullScreenContent:appopen ");
-
                             // Set the reference to null so isAdAvailable() returns false.
                             AppOpenManager.this.appOpenAd = null;
                             isShowingAd = false;
@@ -122,18 +116,13 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
 
                         @Override
                         public void onAdFailedToShowFullScreenContent(@NonNull AdError adError) {
-                            Log.d(LOG_TAG, "onAdFailedToShowFullScreenContent:appopen " + adError.getMessage());
-
                         }
 
                         @Override
                         public void onAdShowedFullScreenContent() {
-                            Log.d(LOG_TAG, "onAdShowedFullScreenContent:appopen ");
-
                             isShowingAd = true;
                         }
                     };
-            Log.d(LOG_TAG, "showAdIfAvailable:appopen ");
             appOpenAd.setFullScreenContentCallback(fullScreenContentCallback);
             appOpenAd.show(currentActivity);
 
@@ -186,7 +175,6 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
 
     @OnLifecycleEvent(ON_START)
     public void onStart() {
-        Log.d(LOG_TAG, "onStart");
         if (isSplash) {
             Log.d(LOG_TAG, "no open ad for splash");
         } else {
